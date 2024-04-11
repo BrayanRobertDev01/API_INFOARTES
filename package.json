@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --ignore-watch node_modules src/index.ts"
+    "dev": "ts-node-dev --ignore-watch node_modules src/index.ts",
+    "start": "node src/index.js",
+    "build": "tsc"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
