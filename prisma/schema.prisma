@@ -10,6 +10,7 @@ datasource db {
 model Produto {
   id              Int         @id @default(autoincrement())
   nome            String
+  informacoes Json
   vendas          Venda[]     @relation("Vendas_Produtos")
   id_tipo_produto Int
   tipo_produto    TipoProduto @relation(fields: [id_tipo_produto], references: [id])
@@ -17,6 +18,7 @@ model Produto {
 
 model TipoProduto {
   id              Int       @id @default(autoincrement())
+  nome            String 
   caracteristicas Json
   produtos        Produto[]
 }
@@ -36,13 +38,13 @@ model Status {
 model Venda {
   id                Int            @id @default(autoincrement())
   cliente           String         @db.VarChar(255)
-  telefone          String         @db.Char(11)
+  telefone          String?         @db.Char(11)
   data_pedido       DateTime       @db.Date
   data_finalizado   DateTime?      @db.Date
   id_status         Int
   id_tipo_pagamento Int
-  pedido            Json
   status            Status?        @relation(fields: [id_status], references: [id])
   tipo_pagamento    TipoPagamento? @relation(fields: [id_tipo_pagamento], references: [id])
   produtos          Produto[]      @relation("Vendas_Produtos")
+  valor             Float 
 }

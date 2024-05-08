@@ -2,17 +2,25 @@ import { Produto, TipoProduto } from "@prisma/client";
 import { prisma } from "../configs/database";
 
 export class ManageTipoProdutoService {
-  create(tipoProduto: TipoProduto) {
+  async create(tipoProduto: TipoProduto) {
     try {
-      return prisma.tipoProduto.create({
+      const { nome, caracteristicas } = tipoProduto;
+
+      // Criando um novo tipo de produto no banco de dados
+      const newTipoProduto = await prisma.tipoProduto.create({
         data: {
-          caracteristicas: tipoProduto.caracteristicas,
+          nome: nome, // Adicionar o nome
+          caracteristicas: caracteristicas, // Adicionar características como objeto
         },
       });
+
+      return newTipoProduto; // Retornar a entrada criada
     } catch (err: any) {
-      return new Error("");
+      console.error(err); // Logar o erro para debug
+      throw new Error("Erro ao criar tipo de produto"); // Retornar erro
     }
   }
+
 
   getAll() {
     try {
@@ -20,6 +28,7 @@ export class ManageTipoProdutoService {
         select: {
           id: true,
           caracteristicas: true,
+          nome: true
         },
       });
     } catch (err: any) {

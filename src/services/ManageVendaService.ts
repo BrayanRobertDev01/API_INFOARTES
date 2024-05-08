@@ -11,13 +11,13 @@ export class ManageVendaService {
           data_finalizado: venda.data_finalizado,
           telefone: venda.telefone,
           id_status: venda.id_status,
-          pedido: venda.pedido,
           id_tipo_pagamento: venda.id_tipo_pagamento,
           produtos: {
             connect: produtos.map((p: number) => {
               return { id: p };
             }),
           },
+          valor: venda.valor
         },
       });
     } catch (err: any) {
@@ -36,11 +36,9 @@ export class ManageVendaService {
           status: true,
           tipo_pagamento: true,
           telefone: true,
-          pedido: true,
           produtos: {
             select: {
               id: true,
-              nome: true,
               tipo_produto: {
                 select: {
                   id: true,

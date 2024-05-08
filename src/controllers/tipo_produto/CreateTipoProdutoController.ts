@@ -14,3 +14,55 @@ export class CreateTipoProdutoController {
     return res.status(200).send(response);
   }
 }
+
+const Camisa = {
+  "Tecido" : ["Algodão", "Poliéster", "Dryfall"], //Select
+  "Tamanho" : ["P", "M", "G", "GG", "xGG"], //Select
+  "Cor" : ["Preta", "Branca", "Colorida"], //Select
+  "Valor" : ["Combinação dos selects"] // rota = url/products/tecido_id=1&tamanho_id=1&cor_id=1
+}
+
+const CamisaCerta = {
+  "Algodão" : {
+    "Preta" : {
+        "Tamanho" : ["P", "M", "G", "GG"],
+        "Price" : 10,
+      },
+    "Branca" : {
+        "Tamanho" : ["P", "M", "G", "GG"],
+        "Price" : 15,
+      },
+    "Colorido" : {
+        "Tamanho" : ["P", "M", "G", "GG"],
+        "Price" : 20,
+      },
+      },
+  "Poliéster" : {
+    "Preta" : {
+        "Tamanho" : ["P", "M", "G", "GG"],
+        "Price" : 10,
+      },
+    "Branca" : {
+        "Tamanho" : ["P", "M", "G", "GG"],
+        "Price" : 15,
+      },
+    "Colorido" : {
+        "Tamanho" : ["P", "M", "G", "GG"],
+        "Price" : 20,
+      },
+    },
+  "DryFall" : {
+    "Preta" : {
+        "Tamanho" : ["P", "M", "G", "GG"],
+        "Price" : 10,
+      },
+    "Branca" : {
+        "Tamanho" : ["P", "M", "G", "GG"],
+        "Price" : 15,
+      },
+    "Colorido" : {
+        "Tamanho" : ["P", "M", "G", "GG"],
+        "Price" : 20,
+      },
+    }
+  }

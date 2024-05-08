@@ -6,8 +6,9 @@ export class ManageProdutoService {
     try {
       return prisma.produto.create({
         data: {
-          nome: produto.nome,
           id_tipo_produto: produto.id_tipo_produto,
+          nome: produto.nome,
+          informacoes: produto.informacoes
         },
       });
     } catch (err: any) {
@@ -20,7 +21,6 @@ export class ManageProdutoService {
       return prisma.produto.findMany({
         select: {
           id: true,
-          nome: true,
           tipo_produto: {
             select: {
               caracteristicas: true,
@@ -52,7 +52,6 @@ export class ManageProdutoService {
           id,
         },
         data: {
-          nome: produto.nome,
           id_tipo_produto: produto.id_tipo_produto,
         },
       });
