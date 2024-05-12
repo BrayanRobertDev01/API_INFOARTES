@@ -21,17 +21,34 @@ export class ManageProdutoService {
       return prisma.produto.findMany({
         select: {
           id: true,
-          tipo_produto: {
-            select: {
-              caracteristicas: true,
-            },
-          },
+          id_tipo_produto: true,
+          nome: true,
+          informacoes: true,
         },
       });
     } catch (err: any) {
       return new Error("");
     }
   }
+
+  getProductByCategory(id_tipo_produto: number) {
+    try {
+      return prisma.produto.findMany({
+        where: {
+          id_tipo_produto: id_tipo_produto
+        },
+        select: {
+          id: true,
+          id_tipo_produto: true,
+          nome: true,
+          informacoes: true,
+        },
+      });
+    } catch (err: any) {
+      return new Error("");
+    }
+  }
+  
 
   get(id: number) {
     try {

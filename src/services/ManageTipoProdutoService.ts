@@ -36,6 +36,24 @@ export class ManageTipoProdutoService {
     }
   }
 
+  getProductByCategory(id_tipo_produto: number) {
+    try {
+      return prisma.produto.findMany({
+        where: {
+          id_tipo_produto: id_tipo_produto
+        },
+        select: {
+          id: true,
+          id_tipo_produto: true,
+          nome: true,
+          informacoes: true,
+        },
+      });
+    } catch (err: any) {
+      return new Error("");
+    }
+  }
+
   get(id: number) {
     try {
       return prisma.tipoProduto.findUnique({
